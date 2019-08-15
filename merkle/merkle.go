@@ -5,6 +5,12 @@ import (
 	"hash"
 )
 
+func GenHash(h hash.Hash, data []byte) []byte {
+	h.Reset()
+	h.Write(data)
+	return h.Sum(nil)
+}
+
 // a new hash struct
 func mkRoot(hash []byte) *MerkleRoot {
 	return &MerkleRoot{

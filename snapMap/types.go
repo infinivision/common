@@ -43,7 +43,6 @@ func (m *hashMap) Get(k []byte) []byte {
 		return []byte(v)
 	}
 }
-
 func (m *hashMap) Set(k, v []byte) error {
 	m.Lock()
 	defer m.Unlock()
