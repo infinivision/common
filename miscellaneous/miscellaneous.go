@@ -36,6 +36,14 @@ func Dup(a []byte) []byte {
 	return append(b, a...)
 }
 
+func BytesToStrings(xs [][]byte) []string {
+	ys := make([]string, len(xs))
+	for i := range xs {
+		ys[i] = string(xs[i])
+	}
+	return ys
+}
+
 func E8func(a uint8) []byte {
 	buf := make([]byte, 1)
 	buf[0] = a & 0xFF

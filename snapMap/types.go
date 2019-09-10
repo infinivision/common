@@ -20,7 +20,7 @@ type Map interface {
 }
 
 type hashMap struct {
-	sync.Locker
+	sync.Mutex
 	hp bheap.BHeap
 	mp map[string]string
 }

@@ -105,6 +105,7 @@ func ElemIndex(x typeclass.Ord, xs []typeclass.Ord) int {
 	}
 }
 */
+
 func ElemIndex(x typeclass.Ord, xs []typeclass.Ord) int {
 	for i, j := 0, len(xs); i < j; i++ {
 		if xs[i].Eq(x) {
@@ -232,6 +233,7 @@ func Bsearch(xs []typeclass.Ord, x typeclass.Ord) bool {
 	}
 }
 */
+
 func Bsearch(x typeclass.Ord, xs []typeclass.Ord) int {
 	mid, start, end := 0, 0, len(xs)-1
 	for start <= end {
