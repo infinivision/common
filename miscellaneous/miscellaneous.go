@@ -37,11 +37,16 @@ func Dup(a []byte) []byte {
 }
 
 func BytesToStrings(xs [][]byte) []string {
-	ys := make([]string, len(xs))
-	for i := range xs {
-		ys[i] = string(xs[i])
+	switch {
+	case xs == nil:
+		return nil
+	default:
+		ys := make([]string, len(xs))
+		for i := range xs {
+			ys[i] = string(xs[i])
+		}
+		return ys
 	}
-	return ys
 }
 
 func E8func(a uint8) []byte {
@@ -152,6 +157,28 @@ func Dslice(data []byte) ([]byte, []byte, error) {
 		return []byte{}, []byte{}, errors.New("DecodeSlice: Illegal slice length")
 	}
 	return Dup(data[:n]), data[n:], nil
+}
+
+func StringsDel(xs []string, x string) []string {
+	switch {
+	case len(xs) == 0:
+		return xs
+	case xs[0] == x:
+		return xs[1:]
+	default:
+		return append(xs[:1], StringsDel(xs[1:], x)...)
+	}
+}
+
+func StringsAdd(xs []string, x string) []string {
+	switch {
+	case len(xs) == 0:
+		return append(xs, x)
+	case xs[0] == x:
+		return xs
+	default:
+		return append(xs[:1], StringsAdd(xs[1:], x)...)
+	}
 }
 
 // xs是否包含ys, xs和ys均为排序后的数组
